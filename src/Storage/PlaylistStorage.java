@@ -17,7 +17,7 @@ public class PlaylistStorage {
         }
     }
 
-    public static List<Playlist> load(String file, CatalogService catalog) throws IOException {
+    public static List<Playlist> load(String file) throws IOException {
         List<Playlist> list = new ArrayList<>();
         File f = new File(file);
         if (!f.exists()) {
@@ -43,7 +43,7 @@ public class PlaylistStorage {
                 } else {
                     try {
                         int id = Integer.parseInt(line);
-                        AudioFile item = catalog.getById(id);
+                        AudioFile item = CatalogService.findById(id);
                         if (item != null && current != null) {
                             current.add(item);
                         }

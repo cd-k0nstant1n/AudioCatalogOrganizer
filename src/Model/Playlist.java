@@ -5,26 +5,24 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Playlist extends AudioCollection {
-    private String title;
-    private int duration;
-    private List<AudioFile> playlist = new ArrayList<>();
 
     public Playlist(String title) {
         super(title);
     }
 
-    public String getTitle() {return this.title;}
-    public int getDuration() {return this.duration;}
-    public List<AudioFile> getPlaylist() {return this.playlist;}
-
+    @Override
     public void add(AudioFile file) {
-        duration += file.getDuration();
-        playlist.add(file);
+        super.add(file);
+    }
+
+    @Override
+    public List<AudioFile> getItems() {
+        return items;
     }
 
     public boolean remove(int id) {
         AudioFile toRemove = null;
-        for (AudioFile file : this.playlist) {
+        for (AudioFile file : this.items) {
             if (file.getId() == id) {
                 toRemove = file;
                 break;
@@ -32,22 +30,44 @@ public class Playlist extends AudioCollection {
         }
 
         if (toRemove != null) {
-            this.playlist.remove(toRemove);
+            this.items.remove(toRemove);
             duration -= toRemove.getDuration();
             return true;
         }
         return false;
     }
 
+    public void sortByTitle() {
+        items.sort(new Comparator<AudioFile>() {
+            @Override
+            public int compare(AudioFile item1, AudioFile item2) {
+                return item1.getTitle().compareToIgnoreCase(item2.getTitle());
+            }
+        });
+    }
+
+    public List<AudioFile> findByTitleAndAuthor(String name, String author) {
+        List<AudioFile> list = new ArrayList<>();
+        String searchName = name.toLowerCase();
+        String searchAuthor = author.toLowerCase();
+
+        for (AudioFile item : items) {
+            if(item.getTitle().toLowerCase().contains(searchName) || item.getAuthor().toLowerCase().contains(searchAuthor)){
+                list.add(item);
+            }
+        }
+        return list;
+    }
+
 
     @Override
     public String toString() {
-        return title + " (" + playlist.size() + "items) " + AudioFile.formatTime(duration) + "s";
+        return title + " (" + items.size() + " items) " + AudioFile.formatTime(duration);
     }
 
     public String toFile(){
         StringBuilder sb = new StringBuilder("PLAYLIST|" + title + "\n");
-        for (AudioFile i : playlist) sb.append(i.getId()).append("\n");
+        for (AudioFile i : items) sb.append(i.getId()).append("\n");
         return sb.toString();
     }
 }

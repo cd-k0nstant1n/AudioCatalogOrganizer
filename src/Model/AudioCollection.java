@@ -15,6 +15,7 @@ public abstract class AudioCollection {
     }
 
     public void add(AudioFile item) {
+        if (items.contains(item)) {return;}
         items.add(item);
         duration += item.getDuration();
     }

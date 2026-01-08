@@ -6,24 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistService {
-    private List<Playlist> playlists = new ArrayList<>();
+    private static List<Playlist> playlists = new ArrayList<>();
 
-    public List<Playlist> getPlaylists() { return playlists; }
+    public static List<Playlist> getPlaylist() { return playlists; }
 
-    public boolean add(Playlist playlist) {
-        if (getByName(playlist.getTitle()) != null) {
+    public static boolean add(Playlist playlist) {
+        if (findByName(playlist.getTitle()) != null) {
             return false;
         }
         playlists.add(playlist);
         return true;
     }
 
-    public void remove(Playlist playlist) { playlists.remove(playlist); }
+    public static void remove(Playlist playlist) { playlists.remove(playlist); }
 
-    public Playlist getByName(String name) {
+    public static Playlist findByName(String name) {
         String searchName = name.toLowerCase();
         for (Playlist item : playlists) {
-            if(item.getTitle().toLowerCase().contains(searchName)){
+            if(item.getTitle().toLowerCase().equals(searchName)){
                 return item;
             }
         }

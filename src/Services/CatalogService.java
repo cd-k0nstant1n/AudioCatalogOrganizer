@@ -59,14 +59,14 @@ public class CatalogService {
     public static int getNextInt(){
         int max = 0;
         for (AudioFile file : catalog) {
-            if (file.getYear() > max) {
-                max = file.getYear();
+            if (file.getId() > max) {
+                max = file.getId();
             }
         }
         return max+1;
     }
 
-    public static AudioFile getById(int id) {
+    public static AudioFile findById(int id) {
         for (AudioFile file : catalog) {
             if (file.getId() == id) {
                 return file;
@@ -75,7 +75,7 @@ public class CatalogService {
         return null;
     }
 
-    public static List<AudioFile> getByName(String name) {
+    public static List<AudioFile> findByName(String name) {
         List<AudioFile> list = new ArrayList<>();
         String searchName = name.toLowerCase();
         for (AudioFile item : catalog) {
@@ -86,7 +86,8 @@ public class CatalogService {
         return list;
     }
 
-    public static List<AudioFile> getByAuthor(String author) {
+
+    public static List<AudioFile> findByAuthor(String author) {
         List<AudioFile> list = new ArrayList<>();
         String searchAuthor = author.toLowerCase();
         for (AudioFile item : catalog) {
@@ -97,7 +98,7 @@ public class CatalogService {
         return list;
     }
 
-    public static List<AudioFile> getByGenre(String genre) {
+    public static List<AudioFile> findByGenre(String genre) {
         List<AudioFile> list = new ArrayList<>();
         String searchGenre = genre.toLowerCase();
         for (AudioFile item : catalog) {
@@ -108,7 +109,7 @@ public class CatalogService {
         return list;
     }
 
-    public static List<AudioFile> getByYear(int year) {
+    public static List<AudioFile> findByYear(int year) {
         List<AudioFile> list = new ArrayList<>();
         for (AudioFile item : catalog) {
             if(item.getYear() == year){
@@ -118,7 +119,7 @@ public class CatalogService {
         return list;
     }
 
-    public static List<AudioFile> getByNameAndAuthor(String name, String author) {
+    public static List<AudioFile> findByTitleAndAuthor(String name, String author) {
         List<AudioFile> list = new ArrayList<>();
         String searchName = name.toLowerCase();
         String searchAuthor = author.toLowerCase();
@@ -128,6 +129,24 @@ public class CatalogService {
             }
         }
         return list;
+    }
+
+    public static void sortByNewest() {
+        catalog.sort(new Comparator<AudioFile>() {
+            @Override
+            public int compare(AudioFile item1, AudioFile item2) {
+                return Integer.compare(item2.getId(), item1.getId());
+            }
+        });
+    }
+
+    public static void sortByOldest() {
+        catalog.sort(new Comparator<AudioFile>() {
+            @Override
+            public int compare(AudioFile item1, AudioFile item2) {
+                return Integer.compare(item1.getId(), item2.getId());
+            }
+        });
     }
 
     public static void sortByName() {

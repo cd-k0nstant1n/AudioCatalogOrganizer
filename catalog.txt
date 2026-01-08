@@ -1,0 +1,11 @@
+1|SONG|Bohemian Rhapsody|Queen|A Night at the Opera|355|Rock|1975
+2|SONG|Hotel California|Eagles|Hotel California|390|Rock|1976
+3|SONG|Blinding Lights|The Weeknd|After Hours|200|Pop|2020
+4|PODCAST|Joe Rogan Experience #1109|Joe Rogan|single|7200|Talk|2018
+5|AUDIOBOOK|Harry Potter and the Sorcerer's Stone|J.K. Rowling|single|32000|Fantasy|1997
+6|SONG|Love of My Life|Queen|A Night at the Opera|230|Rock|1975
+7|SONG|Shape of You|Ed Sheeran|Divide|233|Pop|2017
+8|PODCAST|Tech News Daily|TechCrunch|single|900|Tech|2023
+9|AUDIOBOOK|The Hobbit|J.R.R. Tolkien|single|36500|Fantasy|1937
+10|SONG|Levitating|Dua Lipa|Future Nostalgia|203|Pop|2020
+11|SONG|Gasoline|Maneskin|Rush|150|rock|2019
