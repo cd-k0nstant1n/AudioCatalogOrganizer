@@ -48,7 +48,7 @@ public class PlaylistStorage {
                             current.add(item);
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Пропуснат повреден ред: " + line);
+                        System.out.println("Skipped corrupted line: " + line);
                     }
                 }
             }

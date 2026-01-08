@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Playlist {
+public class Playlist extends AudioCollection {
     private String title;
     private int duration;
     private List<AudioFile> playlist = new ArrayList<>();
 
     public Playlist(String title) {
-        this.title = title;
-        this.duration = 0;
+        super(title);
     }
 
     public String getTitle() {return this.title;}

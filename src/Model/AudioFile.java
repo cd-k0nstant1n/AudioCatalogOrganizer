@@ -17,6 +17,13 @@ public class AudioFile {
         this.genre = genre;
         this.duration = duration;
         this.year = year;
+        if(album == null) album = "single";
+        else{
+            album = album.trim();
+            if (album.isEmpty()||album.equalsIgnoreCase("none")) {
+                album = "single";
+            }
+        }
         this.album = album;
         this.format = format;
     }
@@ -30,10 +37,31 @@ public class AudioFile {
     public String getAlbum() {return album;}
     public AudioFormat getFormat() {return format;}
 
+    public static String formatTime(int totalSeconds) {
+        if (totalSeconds <= 0) return "00:00";
+
+        long days = totalSeconds / 86400;
+        long remaining = totalSeconds % 86400;
+        long hours = remaining / 3600;
+        remaining %= 3600;
+        long minutes = remaining / 60;
+        long seconds = remaining % 60;
+
+        if (days > 0) {
+            return String.format("%d days, %02d:%02d:%02d", days, hours, minutes, seconds);
+        }
+        else if (hours > 0) {
+            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        }
+        else {
+            return String.format("%02d:%02d", minutes, seconds);
+        }
+    }
+
     @Override
     public String toString() {
-        return String.format("[%d] %s | Title: %s | Author: %s | Album: %s | %s | %d | %ds",
-                id, format, title, author, album, genre, year, duration);
+        return String.format("[%d] %s | Title: %s | Author: %s | Album: %s | %s | %d | %s",
+                id, format, title, author, album, genre, year, formatTime(duration));
     }
 
     public String toFile() {

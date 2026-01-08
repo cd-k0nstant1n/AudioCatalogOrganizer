@@ -36,7 +36,7 @@ public class CatalogStorage {
                         AudioFile item = AudioFile.fromFile(line);
                         list.add(item);
                     } catch (Exception e) {
-                        System.out.println("Пропуснат повреден ред: " + line);
+                        System.out.println("Skipped corrupted line: " + line);
                     }
                 }
             }
