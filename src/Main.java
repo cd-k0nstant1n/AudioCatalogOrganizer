@@ -106,17 +106,40 @@ public class Main {
     private static void addNewItem() {
         System.out.println("\n--- ADD NEW MEDIA ---");
 
-        System.out.print(" Title: ");
-        String title = sc.nextLine();
+        String title;
+        String author;
+        String genre;
 
-        System.out.print(" Author: ");
-        String author = sc.nextLine();
+        while (true) {
+            System.out.print(" Title: ");
+            title = sc.nextLine();
+            if (title.trim().isEmpty()) {
+                System.out.println("Invalid title");
+                continue;
+            }
+            break;
+        }
+        while (true) {
+            System.out.print(" Author: ");
+            author = sc.nextLine();
+            if (author.trim().isEmpty()) {
+                System.out.println("Invalid author");
+                continue;
+            }
+            break;
+        }
+            System.out.print(" Album (press Enter for 'single'): ");
+            String album = sc.nextLine();
 
-        System.out.print(" Album (press Enter for 'single'): ");
-        String album = sc.nextLine();
-
-        System.out.print(" Genre: ");
-        String genre = sc.nextLine();
+        while (true) {
+            System.out.print(" Genre: ");
+            genre = sc.nextLine();
+            if (genre.trim().isEmpty()) {
+                System.out.println("Invalid genre");
+                continue;
+            }
+            break;
+        }
 
         int year = 0;
         while (true) {

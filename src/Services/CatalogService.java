@@ -17,7 +17,7 @@ public class CatalogService {
 
     public static boolean isDublicate(String title, String author, String album) {
         if (album == null || album.trim().isEmpty() || album.equalsIgnoreCase("none")) {
-            album = "none";
+            album = "single";
         } else {
             album = album.trim();
         }
