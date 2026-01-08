@@ -39,18 +39,10 @@ public class Playlist extends AudioCollection {
         return false;
     }
 
-    public void sortByTitle() {
-        playlist.sort(new Comparator<AudioFile>() {
-            @Override
-            public int compare(AudioFile item1, AudioFile item2) {
-                return item1.getTitle().compareToIgnoreCase(item1.getTitle());
-            }
-        });
-    }
 
     @Override
     public String toString() {
-        return title + " (" + playlist.size() + "items) " + duration + "s";
+        return title + " (" + playlist.size() + "items) " + AudioFile.formatTime(duration) + "s";
     }
 
     public String toFile(){
