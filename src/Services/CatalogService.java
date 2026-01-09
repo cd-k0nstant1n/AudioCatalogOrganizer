@@ -17,7 +17,7 @@ public class CatalogService {
 
     public static boolean isDublicate(String title, String author, String album) {
         if (album == null || album.trim().isEmpty() || album.equalsIgnoreCase("none")) {
-            album = "single";
+            album = "None";
         } else {
             album = album.trim();
         }
@@ -75,29 +75,6 @@ public class CatalogService {
         return null;
     }
 
-    public static List<AudioFile> findByName(String name) {
-        List<AudioFile> list = new ArrayList<>();
-        String searchName = name.toLowerCase();
-        for (AudioFile item : catalog) {
-            if(item.getTitle().toLowerCase().contains(searchName)){
-                list.add(item);
-            }
-        }
-        return list;
-    }
-
-
-    public static List<AudioFile> findByAuthor(String author) {
-        List<AudioFile> list = new ArrayList<>();
-        String searchAuthor = author.toLowerCase();
-        for (AudioFile item : catalog) {
-            if(item.getAuthor().toLowerCase().contains(searchAuthor)){
-                list.add(item);
-            }
-        }
-        return list;
-    }
-
     public static List<AudioFile> findByGenre(String genre) {
         List<AudioFile> list = new ArrayList<>();
         String searchGenre = genre.toLowerCase();
@@ -119,7 +96,7 @@ public class CatalogService {
         return list;
     }
 
-    public static List<AudioFile> findByTitleAndAuthor(String name, String author) {
+    public static List<AudioFile> smartSearch(String name, String author) {
         List<AudioFile> list = new ArrayList<>();
         String searchName = name.toLowerCase();
         String searchAuthor = author.toLowerCase();

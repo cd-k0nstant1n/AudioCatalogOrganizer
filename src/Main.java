@@ -21,7 +21,7 @@ public class Main {
             for (AudioFile item : loadedData) {
                 CatalogService.add(item);
             }
-            System.out.println(" [OK] Catalog loaded: " + CatalogService.getCatalog().size() + " items");
+            System.out.println("Catalog loaded: " + CatalogService.getCatalog().size() + " items");
         } catch (IOException e) {
             System.out.println("Could not load catalog: " + e.getMessage());
         }
@@ -29,7 +29,7 @@ public class Main {
         try {
             List<Playlist> loadedPlaylists = PlaylistStorage.load(PLAYLIST_FILE);
             PlaylistService.getPlaylist().addAll(loadedPlaylists);
-            System.out.println(" [OK] Playlists loaded: " + loadedPlaylists.size());
+            System.out.println("Playlists loaded: " + loadedPlaylists.size());
         } catch (IOException e) {
             System.out.println("Could not load playlists: " + e.getMessage());
         }
@@ -39,13 +39,13 @@ public class Main {
         // --- MAIN LOOP ---
         while (true) {
             System.out.println("\n==================================");
-            System.out.println("       AUDIO LIBRARY MANAGER      ");
+            System.out.println("       AUDIO CATALOG MANAGER      ");
             System.out.println("==================================");
 
             System.out.println(" ---- BROWSE ----");
             System.out.println("  1. Show All Media");
             System.out.println("  2. Show Albums");
-            System.out.println("  3. Search Library");
+            System.out.println("  3. Search Catalog");
             System.out.println("  4. Playlists Menu");
 
             System.out.println(" ---- MANAGE ----");
@@ -128,7 +128,7 @@ public class Main {
             }
             break;
         }
-            System.out.print(" Album (press Enter for 'single'): ");
+            System.out.print(" Album (press Enter for 'None'): ");
             String album = sc.nextLine();
 
         while (true) {
@@ -187,7 +187,7 @@ public class Main {
         System.out.print(" Enter Title or Author to find item: ");
         String input = sc.nextLine();
 
-        List<AudioFile> matches = CatalogService.findByTitleAndAuthor(input, input);
+        List<AudioFile> matches = CatalogService.smartSearch(input, input);
         int idToRemove = -1;
 
         if (matches.isEmpty()) {
@@ -257,7 +257,7 @@ public class Main {
             case "1" -> {
                 System.out.print(" Search query: ");
                 String query = sc.nextLine();
-                results = CatalogService.findByTitleAndAuthor(query, query);
+                results = CatalogService.smartSearch(query, query);
             }
             case "2" -> {
                 System.out.print(" Enter Genre: ");
@@ -352,7 +352,7 @@ public class Main {
         while (playlistExists) {
             System.out.println("\n >> Managing: [" + p.getTitle() + "]");
             System.out.println(" 1. Show items");
-            System.out.println(" 2. Add item (Search)");
+            System.out.println(" 2. Add item (SmartSearch)");
             System.out.println(" 3. Remove item");
             System.out.println(" 4. Sort playlist by Title");
             System.out.println(" 5. Search inside Playlist");
@@ -376,7 +376,7 @@ public class Main {
                 case "2" -> {
                     System.out.print(" Enter Title/Author to add: ");
                     String input = sc.nextLine();
-                    List<AudioFile> matches = CatalogService.findByTitleAndAuthor(input, input);
+                    List<AudioFile> matches = CatalogService.smartSearch(input, input);
 
                     if (matches.isEmpty()) {
                         System.out.println("No matches found in Catalog.");
@@ -412,7 +412,7 @@ public class Main {
                 case "3" -> {
                     System.out.print(" Enter Title/Author to remove: ");
                     String input = sc.nextLine();
-                    List<AudioFile> matches = p.findByTitleAndAuthor(input, input);
+                    List<AudioFile> matches = p.smartSearch(input, input);
                     if (matches.isEmpty()) System.out.println("Not found in playlist.");
                     else {
                         for (AudioFile m : matches) System.out.println(m);
@@ -433,7 +433,7 @@ public class Main {
                 case "5" -> {
                     System.out.print(" Search query: ");
                     String query = sc.nextLine();
-                    List<AudioFile> results = p.findByTitleAndAuthor(query, query);
+                    List<AudioFile> results = p.smartSearch(query, query);
                     if (results.isEmpty()) System.out.println("No matches.");
                     else for (AudioFile m : results) System.out.println(m);
                 }

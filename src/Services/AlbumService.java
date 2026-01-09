@@ -25,7 +25,7 @@ public class AlbumService {
 
             String cleanName = albumName.trim();
 
-            if (cleanName.equals("single")) {
+            if (cleanName.equals("None")) {
                 continue;
             }
 

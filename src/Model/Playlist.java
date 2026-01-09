@@ -46,7 +46,7 @@ public class Playlist extends AudioCollection {
         });
     }
 
-    public List<AudioFile> findByTitleAndAuthor(String name, String author) {
+    public List<AudioFile> smartSearch(String name, String author) {
         List<AudioFile> list = new ArrayList<>();
         String searchName = name.toLowerCase();
         String searchAuthor = author.toLowerCase();

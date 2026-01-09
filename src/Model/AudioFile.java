@@ -17,11 +17,11 @@ public class AudioFile {
         this.genre = genre;
         this.duration = duration;
         this.year = year;
-        if(album == null) album = "single";
+        if(album == null) album = "None";
         else{
             album = album.trim();
             if (album.isEmpty()||album.equalsIgnoreCase("none")) {
-                album = "single";
+                album = "None";
             }
         }
         this.album = album;

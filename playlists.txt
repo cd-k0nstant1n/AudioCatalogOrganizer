@@ -7,3 +7,5 @@ PLAYLIST|My Favorites
 5
 10
 7
+PLAYLIST|newPlaylist
+7

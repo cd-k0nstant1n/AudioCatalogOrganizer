@@ -29,5 +29,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-catalog.txt
-playlists.txt
+.catalog.txt
+.playlists.txt
