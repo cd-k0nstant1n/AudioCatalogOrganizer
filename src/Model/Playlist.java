@@ -10,15 +10,6 @@ public class Playlist extends AudioCollection {
         super(title);
     }
 
-    @Override
-    public void add(AudioFile file) {
-        super.add(file);
-    }
-
-    @Override
-    public List<AudioFile> getItems() {
-        return items;
-    }
 
     public boolean remove(int id) {
         AudioFile toRemove = null;
@@ -37,14 +28,6 @@ public class Playlist extends AudioCollection {
         return false;
     }
 
-    public void sortByTitle() {
-        items.sort(new Comparator<AudioFile>() {
-            @Override
-            public int compare(AudioFile item1, AudioFile item2) {
-                return item1.getTitle().compareToIgnoreCase(item2.getTitle());
-            }
-        });
-    }
 
     public List<AudioFile> smartSearch(String name, String author) {
         List<AudioFile> list = new ArrayList<>();

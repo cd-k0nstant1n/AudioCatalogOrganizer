@@ -20,7 +20,7 @@ public abstract class AudioCollection {
         duration += item.getDuration();
     }
 
-    public void sortByName() {
+    public void sortByTitle() {
         items.sort(new Comparator<AudioFile>() {
             @Override
             public int compare(AudioFile item1, AudioFile item2) {

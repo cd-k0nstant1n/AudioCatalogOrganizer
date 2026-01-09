@@ -47,7 +47,7 @@ public class CatalogService {
             System.out.println("    | " + title + " by " + author + " in " + album + " |");
             return;
         }
-        int newId = getNextInt();
+        int newId = getNextId();
         AudioFile newItem = new AudioFile(newId, title, author, genre, duration, year, album, format);
         catalog.add(newItem);
     }
@@ -56,7 +56,7 @@ public class CatalogService {
         return catalog.removeIf( i -> i.getId() == id);
     }
 
-    public static int getNextInt(){
+    private static int getNextId(){
         int max = 0;
         for (AudioFile file : catalog) {
             if (file.getId() > max) {
